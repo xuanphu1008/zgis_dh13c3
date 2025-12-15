@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>WebGIS – Bản đồ Cẩm Hoàng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- OpenLayers + jQuery -->
+  <script src="js/ol.js"></script>
+  <script src="js/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="css/ol.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header với search -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">🗺️</span>
+        <div class="logo-text">
+          <h1>WebGIS</h1>
+          <span class="logo-sub">Bản đồ Cẩm Hoàng</span>
+        </div>
+      </div>
+      
+      <div class="search-container">
+        <div class="search-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <input id="q" type="text" placeholder="Tìm kiếm vùng đất..." onkeyup="showResultWithLoading(this.value)" />
+          <div id="livesearch"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <main class="main-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>Bộ lọc lớp</h2>
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="layer-section">
+        <h3 class="section-title">Lớp dữ liệu</h3>
+        <div class="layer-list">
+          <label class="layer-item">
+            <input type="checkbox" id="chk_ht" checked />
+            <span class="layer-icon" style="background: #4CAF50;"></span>
+            <div class="layer-info">
+              <span class="layer-name">Hiện trạng sử dụng đất</span>
+              <span class="layer-desc">camhoang_ht</span>
+            </div>
+          </label>
+
+          <label class="layer-item">
+            <input type="checkbox" id="chk_gt" checked />
+            <span class="layer-icon" style="background: #FF9800;"></span>
+            <div class="layer-info">
+              <span class="layer-name">Giao thông</span>
+              <span class="layer-desc">camhoang_gt</span>
+            </div>
+          </label>
+
+          <label class="layer-item">
+            <input type="checkbox" id="chk_csht" checked />
+            <span class="layer-icon" style="background: #2196F3;"></span>
+            <div class="layer-info">
+              <span class="layer-name">Cơ sở hạ tầng</span>
+              <span class="layer-desc">camhoang_csht</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="legend-section">
+        <h3 class="section-title">Chú giải</h3>
+        <div id="legend" class="legend-content"></div>
+      </div>
+    </aside>
+
+    <!-- Map container -->
+    <section class="map-container">
+      <!-- Toggle button cho mobile -->
+      <button class="mobile-toggle" id="mobileToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <!-- Map -->
+      <div id="map" class="map"></div>
+
+      <!-- Popup -->
+      <div id="popup" class="popup">
+        <button class="popup-close" id="popup-closer">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div id="popup-content"></div>
+      </div>
+
+      <!-- Info panel (optional) -->
+      <div id="info" class="info-panel"></div>
+    </section>
+  </main>
+
+  <script src="js/search.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
